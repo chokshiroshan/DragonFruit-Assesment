@@ -42,16 +42,15 @@ def convert_to_quad_tree(image, start_row, start_col, end_row, end_col):
 
     black_exists = False
     white_exists = False
-
     for row in range(start_row, end_row + 1):
         for col in range(start_col, end_col + 1):
             if black_exists and white_exists:
                 break
-            elif not black_exists and image[row][col][0] == 0:
+            elif not black_exists and image[row][col] == False:
                 black_exists = True
-            elif not white_exists and image[row][col][0] == 255:
+            elif not white_exists and image[row][col] == True:
                 white_exists = True
-
+ 
     if black_exists and not white_exists:
         return QuadTree(start_row, start_col, end_row, end_col, 'black')
     elif white_exists and not black_exists:

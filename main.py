@@ -7,10 +7,32 @@ import time
 from PIL import Image
 import numpy as np
 
+def create_image_from_quad_tree(tree, image):
+    if tree is None:
+        return
+
+    # Base case: Leaf node
+    if tree.color == "black":  # Black region
+        # Set corresponding pixels in the image to black
+        for i in range(tree.start_row, tree.end_row + 1):
+            for j in range(tree.start_col, tree.end_col + 1):
+                if i < len(image) and j < len(image[0]):
+                    image[i][j] = 0  # Set pixel to black (0)
+
+    elif tree.color == "white":  # White region
+        # No action needed as white regions are already white in the image
+        pass
+
+    else:  # Mixed region
+        # Recursively process child nodes
+        create_image_from_quad_tree(tree.top_left, image)
+        create_image_from_quad_tree(tree.top_right, image)
+        create_image_from_quad_tree(tree.bottom_left, image)
+        create_image_from_quad_tree(tree.bottom_right, image)
 # Generate fake simulated images
 
 # Create base image
-size = 1000
+size = 10000
 base_image = create_base_image((size, size))
 
 # Create microscope image
@@ -18,11 +40,10 @@ microscope_image, x, y, radius = create_microscope_image(base_image)
 
 # Create dye image
 base_image = create_base_image((size, size))
-dye_image = create_dye_image(base_image, x, y, radius)
-
-# dye_image = create_dye_image_with_lines(base_image, x, y)
+dye_image = create_dye_image_with_lines(base_image, x, y, radius)
 
 # Save images
+
 save_image(microscope_image, 'microscope_image.bmp')
 save_image(dye_image, 'dye_image.bmp')
 # Convert images to to compresssed format
@@ -30,6 +51,8 @@ save_image(dye_image, 'dye_image.bmp')
 # Convert microscope image to quad tree
 microscope_image = np.array(microscope_image)
 microscope_tree = convert_to_quad_tree(microscope_image, 0, 0, size-1, size-1)
+
+
 
 # Convert dye image to quad tree
 dye_image = np.array(dye_image)

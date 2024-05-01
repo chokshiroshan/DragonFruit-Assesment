@@ -14,8 +14,8 @@ def find_overlap_slow(microscope_image, dye_image):
     count = 0
     for row in range(microscope_image.shape[0]):
         for col in range(microscope_image.shape[1]):
-            if microscope_image[row][col][0] == 0:
+            if microscope_image[row][col] == 0:
                 mcount += 1
-                if dye_image[row][col][0] == 0:
+                if dye_image[row][col] == 0:
                     count += 1
     return mcount, count
