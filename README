@@ -1,3 +1,6 @@
+
+I have also created a full stack application out of this project which uses flask as backend and react as frontend and it is hosted on AWS. You can check it out at http://ec2-54-88-101-218.compute-1.amazonaws.com:3000/ . If for any reason it is not working, you can check out the video of the application at https://www.youtube.com/watch?v=WlzaQYVNEQM .
+
 How to run project?
 
 1. Open Terminal 
@@ -88,5 +91,3 @@ But estimate storage for a 100k x 100k image which is represented by '1' mode wi
 6. Describes what tools you used to solve the challenge, particularly any LLM techniques.
 
 Answer: I used Code GPT which uses Ollama to use opesource models like Mitral, Llama and Gemma to generate code. It is opensource alternative to Github Co-pilot. I also used Blackbox.ai agents to get some ideas and tweak my code. I tried to use Stable Diffusion model to generate images but it was not able to generate high quality images. I think it can but would require more time to dig into it.
-
-Side Note: I have also created a full stack application out of this project which uses flask as backend and react as frontend and it is hosted on AWS. You can check it out at http://ec2-54-88-101-218.compute-1.amazonaws.com:3000/ . If for any reason it is not working, you can check out the video of the application at https://www.youtube.com/watch?v=WlzaQYVNEQM .
